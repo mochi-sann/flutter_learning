@@ -27,6 +27,20 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+class NextPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('KBOYのFlutter大学'),
+      ),
+      body: Container(
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
@@ -47,37 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('KBOYのFlutter大学'),
-        actions: [
-          Icon(Icons.add),
-          Icon(Icons.share),
-        ],
       ),
       body: Center(
-        child: Padding(
-          child: Column(
-            children: [
-              Row(
-
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("こんにちは私は須藤です"),
-                  Text(
-                    'KBOYさんの説明はとてもわかりやすい',
-                  ),
-                  Text(
-                    '↑わかる',
-                  ),
-                  Text(
-                    '↑しかもかっこよい',
-                  ),
-                  // Image.asset('img/img.png'),
-                  Image.network(
-                      'https://images.unsplash.com/photo-1616953050510-9a7a5923cb52?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'),
-                ],
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(8.0),
+        child: RaisedButton(
+          child: Text('次へ'),
+          onPressed: () {
+            _incrementCounter();
+            print("ボタン押した");
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NextPage()),
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
