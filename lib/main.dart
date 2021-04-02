@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import "nextpage.dart";
+
 void main() {
   runApp(MyApp());
 }
@@ -27,20 +29,6 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class NextPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('KBOYのFlutter大学'),
-      ),
-      body: Container(
-        color: Colors.red,
-      ),
-    );
-  }
-}
-
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
@@ -58,16 +46,33 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Color c = const Color(0xFF42A5F5);
     return Scaffold(
       appBar: AppBar(
-        title: Text('KBOYのFlutter大学'),
+        title: Text('わーい'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('次へ'),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Color(0xFF2FC561), //ボタンの背景色
+          ),
+
+          // elevation: 16,
+          // color: Color(0xFF42A5F5),
+          // color: Colors.orange,
+          child: Text(
+            'ネクストページ',
+            style: TextStyle(
+              color: Color(0xFF000000),
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
           onPressed: () {
             _incrementCounter();
-            print("ボタン押した");
+            print(
+              "ボタン押した",
+            );
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => NextPage()),
@@ -75,11 +80,51 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        backgroundColor: Theme.of(context).accentColor,
+        onPressed: () {},
         child: Icon(Icons.add),
       ),
+
+      bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).primaryColor,
+        notchMargin: 6.0,
+        shape: AutomaticNotchedShape(
+          RoundedRectangleBorder(),
+          StadiumBorder(
+            side: BorderSide(),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: new Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.person_outline,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.info_outline,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }
